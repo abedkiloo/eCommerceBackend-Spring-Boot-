@@ -32,4 +32,11 @@ public class ProductCrudController {
     public Product saveProduct(@RequestBody Product product) {
         return productService.saveProduct(product);
     }
+
+
+    @DeleteMapping(path = "/v1/product/{id}")
+    public String deleteProduct(@PathVariable int id) {
+        return productService.deleteProductById(id);
+    }
+
 }

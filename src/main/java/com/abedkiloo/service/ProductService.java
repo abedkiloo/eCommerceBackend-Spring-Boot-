@@ -26,12 +26,22 @@ public class ProductService {
     public Optional<Product> getProductById(int id) {
         return productRepository.findById(id);
     }
-
     /*
     save product details
      */
     public Product saveProduct(Product product) {
         return productRepository.save(product);
+    }
+
+    public String deleteProductById(int id) {
+        String result;
+        try {
+            productRepository.deleteById(id);
+            result="Succes product Deletion";
+        }catch (Exception e ){
+            result="Product with id not found";
+        }
+        return result;
     }
     /*
     update product details
