@@ -3,13 +3,11 @@ package com.abedkiloo.controllers;
 import com.abedkiloo.models.Product;
 import com.abedkiloo.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class ProductCrudController {
@@ -23,6 +21,11 @@ public class ProductCrudController {
         /*fetch products from database */
         products = productService.fetchAllProducts();
         return products;
+    }
+
+    @GetMapping(path = "/v1/product/{id}")
+    public Optional<Product> getProduct(@PathVariable int id) {
+        return productService.getProductById(id);
     }
 
     @PostMapping(path = "/v1/products")
